@@ -1,0 +1,99 @@
+.container {  
+    display: grid;
+    background-color: white;
+    position: relative;
+    margin-left: 380px;
+    margin-bottom: 20px;
+    min-width: 500px;
+    max-width: 500px;
+    min-height: 184px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 5px 5  px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "price . logo"
+      "path time transfer"
+      "path time transfer";
+  }
+  
+  .price { grid-area: price; padding-top: 20px; }
+  
+  .logo { grid-area: logo; padding-top: 10px; padding-left: 20px;}
+  
+  .path {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "path__first path__first ."
+      "path__second path__second .";
+    grid-area: path;
+  }
+  
+  .path__first { grid-area: path__first; }
+  
+  .path__second { grid-area: path__second; }
+  
+  .time {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "time__first time__first ."
+      "time__second time__second .";
+    grid-area: time;
+  }
+  
+  .time__first { grid-area: time__first; }
+  
+  .time__second { grid-area: time__second; }
+  
+  .transfer {  display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+      "transfer__first transfer__first ."
+      "transfer__second transfer__second .";
+    grid-area: transfer;
+  }
+  
+  .transfer__first { grid-area: transfer__first; }
+  
+  .transfer__second { grid-area: transfer__second; }
+
+.ticket__text {
+    padding-left: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0.5px;
+}
+
+.ticket__price {
+    padding-left: 20px;
+    color: #2196F3;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 0px;
+}
+
+.ticket__logo {
+    padding-right: 20px;
+    text-align: right;
+    color: red;
+}
+
+.ticket__header{
+    padding-left: 20px;
+    color: rgba(160, 176, 185, 1);
+    font-weight: 600;
+    line-height: 18px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}

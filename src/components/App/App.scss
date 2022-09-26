@@ -1,0 +1,27 @@
+@import '../../assets/scss/colors.scss';
+
+#root {
+    background-color: $bg-color;
+    font-family: 'Open Sans';
+    font-style: normal;
+}
+
+main{
+    margin: 0 auto;
+    width: 900px;
+    min-height: 100vh;
+    width: fit-content;
+    // padding-bottom: 10px;
+}
+
+header {
+    transform: scale(1.1);
+    font-weight: 600;
+    size: 12px;
+}
+
+.skeleton {
+    opacity: 0.5;
+    padding: 2rem;
+    margin-bottom: 10px;
+}

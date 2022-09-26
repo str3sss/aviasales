@@ -1,0 +1,20 @@
+@import '../../assets/scss/colors.scss';
+
+.btns {
+    display:block;
+    margin-left: 380px;
+    margin-bottom: 20px;
+    min-width: calc(167px*3);
+    min-height: 50px;
+}
+
+.btn {
+    min-height: 50px;
+    min-width: 167px;
+    font-weight: 600 !important;
+    &:focus {
+        background-color: $primary-color !important;
+        color: $white !important;
+    }
+}
+
