@@ -20,6 +20,6 @@ export const sortByPrice = (tickets) => {
 
 export const sortByTicketsTransfer = (tickets, transfers = []) => {
   return tickets.filter((item) => {
-    return transfers.includes(item.segments[0].stops.length) || transfers.includes(item.segments[1].stops.length)
+    return transfers.includes(item.segments[0].stops.length) && transfers.includes(item.segments[1].stops.length)
   })
 }
