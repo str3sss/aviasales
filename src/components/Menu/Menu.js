@@ -1,38 +1,30 @@
 import { Checkbox } from 'antd'
-import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+
+import { changeTransfers } from '../../redux/ticketsSlice'
 import './Menu.scss'
-const CheckboxGroup = Checkbox.Group
-const plainOptions = ['Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
-const defaultCheckedList = ['Без пересадок']
 
-const Menu = () => {
-  const [checkedList, setCheckedList] = useState(defaultCheckedList)
-  const [checkAll, setCheckAll] = useState(false)
-
-  const onChange = (list) => {
-    setCheckedList(list)
-    setCheckAll(list.length === plainOptions.length)
-  }
-
-  const onCheckAllChange = (e) => {
-    setCheckedList(e.target.checked ? plainOptions : [])
-    setCheckAll(e.target.checked)
-  }
+const Menu = ({ transfers = [] }) => {
+  const dispatch = useDispatch()
 
   return (
     <menu className="menu">
       <p className="header">Количество пересадок</p>
-      <Checkbox onChange={onCheckAllChange} checked={checkAll} onClick={() => console.log('все')}>
+      <Checkbox checked={transfers.length === 4} onClick={() => dispatch(changeTransfers(-1))} defaultChecked={true}>
         Все
       </Checkbox>
-      <CheckboxGroup
-        style={{ display: 'flex', flexDirection: 'column' }}
-        options={plainOptions}
-        value={checkedList}
-        onChange={onChange}
-      >
-        <h1>1</h1>
-      </CheckboxGroup>
+      <Checkbox checked={transfers.includes(0)} onClick={() => dispatch(changeTransfers(0))}>
+        Без пересадок
+      </Checkbox>
+      <Checkbox checked={transfers.includes(1)} onClick={() => dispatch(changeTransfers(1))}>
+        1 пересадка
+      </Checkbox>
+      <Checkbox checked={transfers.includes(2)} onClick={() => dispatch(changeTransfers(2))}>
+        2 пересадки
+      </Checkbox>
+      <Checkbox checked={transfers.includes(3)} onClick={() => dispatch(changeTransfers(3))}>
+        3 пересадки
+      </Checkbox>
     </menu>
   )
 }

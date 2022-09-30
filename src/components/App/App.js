@@ -1,16 +1,42 @@
-// import { useEffect, useState } from 'react'
-import { Button, Skeleton } from 'antd'
+import { Skeleton } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
+import { fetchId, fetchTickets } from '../../redux/asyncHandles'
 import Menu from '../Menu'
 import Tabs from '../Tabs'
-import Ticket from '../Ticket'
 import './App.scss'
 import logo from '../../assets/img/Logo.svg'
-import { UseGetTickets } from '../../hooks/useGetTickets'
+import {
+  selectError500,
+  selectId,
+  selectnumberOfTickets,
+  selectSelectedTicketsTransfer,
+  selectStop,
+  selectTickets,
+} from '../../redux/selectors'
+import TicketList from '../TicketList'
+import { sortByTicketsTransfer } from '../../utils/sorting'
 
 function App() {
-  const { stop, tickets } = UseGetTickets()
-  const someTickets = tickets.slice(0, 5)
+  const dispatch = useDispatch()
+
+  const stop = useSelector(selectStop)
+  const error500 = useSelector(selectError500)
+  const tickets = useSelector(selectTickets)
+  const id = useSelector(selectId)
+  const numberOfTickets = useSelector(selectnumberOfTickets)
+  const transfers = useSelector(selectSelectedTicketsTransfer)
+
+  useEffect(() => {
+    dispatch(fetchId())
+  }, [])
+
+  useEffect(() => {
+    if (!stop && id) {
+      dispatch(fetchTickets(id))
+    }
+  }, [tickets, id, error500])
 
   if (!stop) {
     return (
@@ -19,29 +45,20 @@ function App() {
         <div className="main__container">
           <Menu />
           <Tabs />
-          <Skeleton active className="container skeleton" round={true} />;
-          <Skeleton active className="container skeleton" round={true} />;
-          <Skeleton active className="container skeleton" round={true} />;
+          <Skeleton active className="container skeleton" round={true} />
+          <Skeleton active className="container skeleton" round={true} />
+          <Skeleton active className="container skeleton" round={true} />
         </div>
       </main>
     )
   }
-
   return (
     <main>
-      {console.log(someTickets[0])}
       <img src={logo} style={{ margin: '40px calc(50% - 41px)' }} sizes="10px" />
       <div className="main__container">
-        <Menu />
+        <Menu transfers={transfers} />
         <Tabs />
-        <Ticket carrier="EK" />
-        <Ticket carrier="MH" />
-        <Ticket carrier="EK" />
-        <Ticket carrier="EY" />
-        <Ticket carrier="SU" />
-        <Button className="btns" type="primary" onClick={() => console.log('еще 5')}>
-          Показать еще 5 билетов
-        </Button>
+        <TicketList tickets={sortByTicketsTransfer(tickets, transfers).slice(0, numberOfTickets)} />
       </div>
     </main>
   )

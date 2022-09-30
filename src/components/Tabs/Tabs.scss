@@ -11,7 +11,8 @@
 .btn {
     min-height: 50px;
     min-width: 167px;
-    font-weight: 600 !important;
+    font-weight: 500 !important;
+    // color: $primary-color !important;
     &:focus {
         background-color: $primary-color !important;
         color: $white !important;
