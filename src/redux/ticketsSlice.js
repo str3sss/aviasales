@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 import { sortByFlyDuration, sortByOptimal, sortByPrice } from '../utils/SortingAlgoritms'
+import { TRANSFERS } from '../utils/TRANSFERS'
 
 import { getTicketsId, getTickets } from './asyncHandles'
 
@@ -22,9 +23,11 @@ export const ticketSlice = createSlice({
       state.numberOfTickets += 5
     },
     changeTransfers(state, action) {
-      if (action.payload === -1) {
+      if (JSON.stringify(action.payload) === JSON.stringify(TRANSFERS.ALL)) {
         state.selectedTicketsTransfer =
-          JSON.stringify(state.selectedTicketsTransfer) === JSON.stringify([0, 1, 2, 3]) ? [] : [0, 1, 2, 3]
+          JSON.stringify(state.selectedTicketsTransfer) === JSON.stringify(TRANSFERS.ALL)
+            ? TRANSFERS.NONE
+            : TRANSFERS.ALL
       } else {
         state.selectedTicketsTransfer = state.selectedTicketsTransfer.includes(action.payload)
           ? state.selectedTicketsTransfer.filter((i) => i != action.payload)

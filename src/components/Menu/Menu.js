@@ -2,9 +2,8 @@ import { Checkbox } from 'antd'
 import { useDispatch } from 'react-redux'
 
 import { changeTransfers } from '../../redux/ticketsSlice'
+import { TRANSFERS } from '../../utils/TRANSFERS'
 import './Menu.scss'
-
-const TRANSFERS = { ALL: -1, NULL: 0, ONE: 1, TWO: 2, THREE: 3 }
 
 const Menu = ({ transfers = [] }) => {
   const dispatch = useDispatch()
