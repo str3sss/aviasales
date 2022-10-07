@@ -8,7 +8,6 @@ import Tabs from '../Tabs'
 import './App.scss'
 import logo from '../../assets/img/Logo.svg'
 import {
-  selectError500,
   selectId,
   selectnumberOfTickets,
   selectSelectedTicketsTransfer,
@@ -22,7 +21,6 @@ function App() {
   const dispatch = useDispatch()
 
   const stop = useSelector(selectStop)
-  const error500 = useSelector(selectError500)
   const tickets = useSelector(selectTickets)
   const id = useSelector(selectId)
   const numberOfTickets = useSelector(selectnumberOfTickets)
@@ -36,7 +34,7 @@ function App() {
     if (!stop && id) {
       dispatch(fetchTickets(id))
     }
-  }, [tickets, id, error500])
+  }, [tickets, id])
 
   if (!stop) {
     return (

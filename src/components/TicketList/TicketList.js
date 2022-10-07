@@ -20,7 +20,7 @@ const TicketList = ({ tickets }) => {
       />
     )
   })
-  if (ticketsList.length === 0) return <Alert className="container alert" message="Ничего не найдено" type="info" />
+  if (!ticketsList.length) return <Alert className="container alert" message="Ничего не найдено" type="info" />
   return (
     <div className="tickets__list">
       {ticketsList}

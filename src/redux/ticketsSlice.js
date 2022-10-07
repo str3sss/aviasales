@@ -10,7 +10,6 @@ const initialState = {
   numberOfTickets: 5,
   stop: false,
   error: null,
-  error500: 0,
   filter: 'none',
   selectedTicketsTransfer: [0, 1, 2, 3],
 }
@@ -53,12 +52,8 @@ export const ticketSlice = createSlice({
       state.tickets = [...state.tickets, ...action.payload.tickets]
       state.stop = action.payload.stop
     },
-    [fetchTickets.rejected]: (state, action) => {
-      if (action.payload === '500') {
-        state.error500 += 1
-      } else {
-        state.error = true
-      }
+    [fetchTickets.rejected]: (state) => {
+      state.error = true
     },
   },
 })
