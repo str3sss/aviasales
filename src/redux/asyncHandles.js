@@ -2,13 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 
 const url = 'https://front-test.dev.aviasales.ru'
 
-export const fetchTickets = createAsyncThunk('tickets/fetchTickets', async (id, { rejectWithValue }) => {
+export const getTickets = createAsyncThunk('tickets/fetchTickets', async (id, { rejectWithValue }) => {
   try {
     let res = await fetch(`${url}/tickets?searchId=${id}`)
     if (res.status === 500) {
       res = await fetch(`${url}/tickets?searchId=${id}`)
     }
-    if (!res.ok && res !== 500) {
+    if (!res.ok && res.status !== 500) {
       throw new Error(`${res.status}`)
     }
     return await res.json()
@@ -17,7 +17,7 @@ export const fetchTickets = createAsyncThunk('tickets/fetchTickets', async (id, 
   }
 })
 
-export const fetchId = createAsyncThunk('tickets/fetchId', async (_, { rejectWithValue }) => {
+export const getTicketsId = createAsyncThunk('tickets/fetchId', async (_, { rejectWithValue }) => {
   try {
     const res = await fetch(`${url}/search`)
     return await res.json()

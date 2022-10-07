@@ -11,13 +11,13 @@ const Tabs = () => {
   return (
     <ButtonGroup className="btns" size="large">
       <Button className="btn" onClick={() => dispatch(sortTicketsByPrice())}>
-        САМЫЙ ДЕШЕВЫЙ
+        Самый дешевый
       </Button>
       <Button className="btn" onClick={() => dispatch(sortTicketsByFlyDuration())}>
-        САМЫЙ БЫСТРЫЙ
+        Самый быстрый
       </Button>
       <Button className="btn" onClick={() => dispatch(sortTicketsByOptimal())}>
-        ОПТИМАЛЬНЫЙ
+        Оптимальный
       </Button>
     </ButtonGroup>
   )

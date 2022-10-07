@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { sortByFlyDuration, sortByOptimal, sortByPrice } from '../utils/SortingAlgoritms'
 
-import { fetchId, fetchTickets } from './asyncHandles'
+import { getTicketsId, getTickets } from './asyncHandles'
 
 const initialState = {
   id: null,
@@ -45,14 +45,14 @@ export const ticketSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchId.fulfilled]: (state, action) => {
+    [getTicketsId.fulfilled]: (state, action) => {
       state.id = action.payload.searchId
     },
-    [fetchTickets.fulfilled]: (state, action) => {
+    [getTickets.fulfilled]: (state, action) => {
       state.tickets = [...state.tickets, ...action.payload.tickets]
       state.stop = action.payload.stop
     },
-    [fetchTickets.rejected]: (state) => {
+    [getTickets.rejected]: (state) => {
       state.error = true
     },
   },

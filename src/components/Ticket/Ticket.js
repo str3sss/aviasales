@@ -42,41 +42,35 @@ const Ticket = ({ price, carrier, first_segment, second_segment }) => {
       </div>
       <div className="path">
         <div className="path__first">
-          <span className="ticket__header">
+          <div className="ticket__header">
             {first_origin}-{first_destination}
-          </span>
-          <br />
+          </div>
           <span className="ticket__text">{getTimeDiffer(first_date, first_duration)}</span>
         </div>
         <div className="path__second">
-          <span className="ticket__header">
+          <div className="ticket__header">
             {second_origin}-{second_destination}
-          </span>
-          <br />
+          </div>
           <span className="ticket__text">{getTimeDiffer(second_date, second_duration)}</span>
         </div>
       </div>
       <div className="time">
         <div className="time__first">
-          <span className="ticket__header">В ПУТИ</span>
-          <br />
+          <div className="ticket__header">В ПУТИ</div>
           <span className="ticket__text">{getDuration(first_duration)}</span>
         </div>
         <div className="time__second">
-          <span className="ticket__header">В ПУТИ</span>
-          <br />
+          <div className="ticket__header">В ПУТИ</div>
           <span className="ticket__text">{getDuration(second_duration)}</span>
         </div>
       </div>
       <div className="transfer">
         <div className="transfer__first">
-          <span className="ticket__header">{first_stops.length} ПЕРЕСАДКИ</span>
-          <br />
+          <div className="ticket__header">{first_stops.length} ПЕРЕСАДКИ</div>
           <span className="ticket__text">{first_stops_titles}</span>
         </div>
         <div className="transfer__second">
-          <span className="ticket__header">{second_stops.length} ПЕРЕСАДКИ</span>
-          <br />
+          <div className="ticket__header">{second_stops.length} ПЕРЕСАДКИ</div>
           <span className="ticket__text">{second_stops_titles}</span>
         </div>
       </div>

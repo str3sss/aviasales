@@ -2,7 +2,7 @@ import { Skeleton } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
-import { fetchId, fetchTickets } from '../../redux/asyncHandles'
+import { getTicketsId, getTickets } from '../../redux/asyncHandles'
 import Menu from '../Menu'
 import Tabs from '../Tabs'
 import './App.scss'
@@ -27,19 +27,19 @@ function App() {
   const transfers = useSelector(selectSelectedTicketsTransfer)
 
   useEffect(() => {
-    dispatch(fetchId())
+    dispatch(getTicketsId())
   }, [])
 
   useEffect(() => {
     if (!stop && id) {
-      dispatch(fetchTickets(id))
+      dispatch(getTickets(id))
     }
   }, [tickets, id])
 
   if (!stop) {
     return (
       <main>
-        <img src={logo} style={{ margin: '40px calc(50% - 41px)' }} sizes="10px" />
+        <img src={logo} className="logotype" />
         <div className="main__container">
           <Menu />
           <Tabs />
@@ -52,7 +52,7 @@ function App() {
   }
   return (
     <main>
-      <img src={logo} style={{ margin: '40px calc(50% - 41px)' }} sizes="10px" />
+      <img src={logo} className="logotype" />
       <div className="main__container">
         <Menu transfers={transfers} />
         <Tabs />
