@@ -16,7 +16,7 @@ import {
   selectTickets,
 } from '../../redux/selectors'
 import TicketList from '../TicketList'
-import { sortByTicketsTransfer } from '../../utils/sorting'
+import { sortByTicketsTransfer } from '../../utils/SortingAlgoritms'
 
 function App() {
   const dispatch = useDispatch()

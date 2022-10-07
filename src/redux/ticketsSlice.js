@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { sortByFlyDuration, sortByOptimal, sortByPrice } from '../utils/sorting'
+import { sortByFlyDuration, sortByOptimal, sortByPrice } from '../utils/SortingAlgoritms'
 
 import { fetchId, fetchTickets } from './asyncHandles'
 
@@ -8,7 +8,6 @@ const initialState = {
   id: null,
   tickets: [],
   numberOfTickets: 5,
-  isLoading: false,
   stop: false,
   error: null,
   error500: 0,
@@ -50,22 +49,14 @@ export const ticketSlice = createSlice({
     [fetchId.fulfilled]: (state, action) => {
       state.id = action.payload.searchId
     },
-    [fetchId.pending]: (state) => {
-      state.isLoading = true
-    },
     [fetchTickets.fulfilled]: (state, action) => {
       state.tickets = [...state.tickets, ...action.payload.tickets]
       state.stop = action.payload.stop
-      state.isLoading = false
-    },
-    [fetchTickets.pending]: (state) => {
-      state.isLoading = true
     },
     [fetchTickets.rejected]: (state, action) => {
       if (action.payload === '500') {
         state.error500 += 1
       } else {
-        state.isLoading = true
         state.error = true
       }
     },
